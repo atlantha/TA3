@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('master');
-// });
+Route::get('/', function () {
+    return view('master');
+});
 
 Route::group(['middleware' => ['auth']],function(){
     Route::group(['prefix' => 'admin'], function(){
@@ -23,22 +23,9 @@ Route::group(['middleware' => ['auth']],function(){
             return redirect()->route('home.index');
         });
         Route::resource('home','HomeController');
-    //     Route::resource('about','AboutController');
-    //     Route::resource('services','ServiceController');
-    //     Route::resource('gallery','GalleryController');
-    //     Route::resource('team','TeamController');
-    //     Route::resource('contact','ContactController');
+   
     });
 });
-
-
-// Route::get('/','PagesController@home')->name('home-user');
-// Route::get('/about','PagesController@about')->name('about-user');
-// Route::get('/services','PagesController@services')->name('services-user');
-// Route::get('/gallery','PagesController@gallery')->name('gallery-user');
-// Route::get('/team','PagesController@gallery')->name('team-user');
-// Route::get('contact/create','PagesController@create')->name('contact.create');
-// Route::get('contact','PagesController@store')->name('contact.store');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
